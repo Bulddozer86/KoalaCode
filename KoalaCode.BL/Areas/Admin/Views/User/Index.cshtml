@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "List of Users";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.ActionLink("Add", "Edit", "User", new { @class = "btn btn-primary" })
+
+<div id="user-list-container">
+    @{ Html.RenderAction("UserList"); }
+</div>

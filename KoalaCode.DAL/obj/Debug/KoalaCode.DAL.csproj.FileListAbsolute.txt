@@ -1,0 +1,13 @@
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\bin\Debug\KoalaCode.DAL.dll.config
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\bin\Debug\KoalaCode.DAL.dll
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\bin\Debug\KoalaCode.DAL.pdb
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\bin\Debug\EntityFramework.dll
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\bin\Debug\EntityFramework.xml
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.csprojResolveAssemblyReference.cache
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.dll
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.pdb
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.Migrations.start.resources
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.csproj.GenerateResource.Cache
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.Migrations.remove_fullName.resources

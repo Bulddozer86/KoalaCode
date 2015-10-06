@@ -1,0 +1,53 @@
+﻿@model List<KoalaCode.BL.Areas.Admin.Models.User.UserListItemModel>
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                @{
+                    var item = Model.First();
+                }
+
+                <th>@Html.DisplayNameFor(x => item.Id)</th>
+                <th>@Html.DisplayNameFor(x => item.FirstName)</th>
+                <th>@Html.DisplayNameFor(x => item.LastName)</th>
+                <th>@Html.DisplayNameFor(x => item.Login)</th>
+                <th>@Html.DisplayNameFor(x => item.Email)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr class="@(u.IsDeleted ? "deleted" : "")">
+                    <td>@u.Id</td>
+                    <td>@u.FirstName</td>
+                    <td>@u.LastName</td>
+                    <td>@u.Login</td>
+                    <td>@u.Email</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "User", new {id = u.Id}, null) |
+
+                        @if (!u.IsDeleted)
+                        {
+                            @Ajax.ActionLink("Delete", "Delete", new {id = u.Id}, new AjaxOptions {HttpMethod = "POST", Confirm = "Are you sure?", UpdateTargetId = "user-list-container"})
+                        }
+                        else
+                        {
+                            @Ajax.ActionLink("Restore", "Restore", new { id = u.Id }, new AjaxOptions { HttpMethod = "POST", Confirm = "Are you sure?", UpdateTargetId = "user-list-container" })
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>Not found!!!</h1>
+}

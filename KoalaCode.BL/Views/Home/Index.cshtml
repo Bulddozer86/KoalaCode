@@ -1,0 +1,32 @@
+﻿@model List<KoalaCode.BL.Models.User.UserModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (Model != null && Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Login</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.Login</td>
+                <td>@u.Email</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>Not found!!!</h1>
+}
