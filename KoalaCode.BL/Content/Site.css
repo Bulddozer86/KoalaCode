@@ -148,3 +148,25 @@ h3,h4,h5 {
 #main {
     padding-top: 120px;
 }
+
+.wrapper-user-icon img {
+    width: 46px;
+    height: 46px;
+    border: 1px solid;
+    padding: 2px;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+
+.hi-guest {
+    padding: 15px 45px !important;
+    text-transform: uppercase;
+}
+
+.hi-guest:hover {
+    background-color: #4285f4 !important;
+}
+
+.hi-guest span {
+    color: #fff;
+}
