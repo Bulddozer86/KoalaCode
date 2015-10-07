@@ -28,7 +28,7 @@ namespace KoalaCode.BL.Controllers
         // GET: Authorization
         public ActionResult LogIn()
         {
-            return View();
+            return PartialView("_LogIn");
         }
 
         [HttpPost]
