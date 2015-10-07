@@ -1,4 +1,4 @@
-﻿/*
+/*
 A custom Bootstrap 3.2 'Google Plus style' theme
 from http://bootply.com
 
@@ -99,74 +99,6 @@ h3,h4,h5 {
  }
 }
 
-
-
-.btn-primary, .label-primary, .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
-    background-color: #4285f4;
-}
-
-.btn, .form-control, .panel, .list-group, .well {
-    border-radius: 1px;
-    box-shadow: 0 0 0;
-}
-
-.btn-primary {
-    border-color: transparent;
-}
-
-#redister-wrapper {
-    margin: 0 auto;
-    float: none;    
-}
-
-#redister-wrapper label {
-    text-align: left;
-}
-
-.koala-code {
-    width: 100%;
-    max-height: 450px;
-}
-
-.big-img {
-    padding-top: 95px;
-}
-
-.gray {
-    color: rgb(84,84,84);
-}
-
-.light-green {
-    color: rgb(173,227,4);
-}
-
-.logo-text {
-    text-transform: uppercase;
-    font-size: 24px;
-}
-
 #main {
-    padding-top: 120px;
-}
-
-.wrapper-user-icon img {
-    width: 46px;
-    height: 46px;
-    border: 1px solid;
-    padding: 2px;
-    margin-top: 2px;
-    margin-right: 10px;
-}
-
-.hi-guest {
-    padding: 15px 45px !important;
-    text-transform: uppercase;
-}
-
-.hi-guest:hover {
-    background-color: #4285f4 !important;
-}
-
-.hi-guest span {
-    color: #fff;
+ padding-top:120px;
 }

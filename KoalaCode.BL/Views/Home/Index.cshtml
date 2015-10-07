@@ -3,30 +3,39 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-@if (Model != null && Model.Any())
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Login</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach (var u in Model)
-        {
-            <tr>
-                <td>@u.Id</td>
-                <td>@u.Login</td>
-                <td>@u.Email</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-}
-else
-{
-    <h1>Not found!!!</h1>
-}
+<div class="col-md-4 col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h2>Index</h2></div>
+        <div class="panel-body">
+            @if (Model != null && Model.Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var u in Model)
+                        {
+                            <tr>
+                                <td>@u.Id</td>
+                                <td>@u.Login</td>
+                                <td>@u.Email</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <h1>Not found!!!</h1>
+            }
+
+        </div>
+    </div>
+</div>
+
+
