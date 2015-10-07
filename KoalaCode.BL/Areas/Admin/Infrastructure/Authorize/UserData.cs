@@ -12,28 +12,30 @@ namespace KoalaCode.BL.Infrastructure.Authorize
     {
         public static LoginUserInfo GetUserInfo()
         {
-            return null;
+            var userInfo = HttpContext.Current.Request.Cookies["UserData"];
+
+            return userInfo == null ? null : JsonConvert.DeserializeObject<LoginUserInfo>(userInfo.Value);
         }
 
         public static void SetUserInfo(User model)
         {
-            var user = new LoginUserInfo
-            {
-                Login = model.Login,
-            };
-
+            var user = new LoginUserInfo{Login = model.Login};
             var json = JsonConvert.SerializeObject(user);
-            var userAuthCookie = new HttpCookie("UserData", json)
-            {
-                Expires = DateTime.Now.AddDays(1)
-            };
+            var userAuthCookie = new HttpCookie("UserData", json){Expires = DateTime.Now.AddDays(1)};
 
             HttpContext.Current.Response.Cookies.Add(userAuthCookie);
         }
 
         public static void ClearUserInfo()
         {
+            var user = HttpContext.Current.Request.Cookies["UserData"];
             
+            if (user == null) {return;}
+            
+            user.Expires = DateTime.Now.AddDays(-1);
+            user.Value = null;
+            
+            HttpContext.Current.Response.SetCookie(user);
         }
     }
 }

@@ -4,14 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevOne.Security.Cryptography.BCrypt;
-using KoalaCode.BL.Areas.Admin.Models.User;
-using KoalaCode.BL.Attributes;
 using KoalaCode.BL.Infrastructure.Authorize;
 using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
 
-namespace KoalaCode.BL.Areas.Admin.Controllers
+namespace KoalaCode.BL.Controllers
 {
-    public class DashboardController : Controller
+    public class AuthorizationController : Controller
     {
         private UnitOfWork _unitOfWork;
         protected UnitOfWork UnitOfWork
@@ -25,27 +23,14 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
                 return _unitOfWork;
             }
         }
-        // GET: Admin/Dashboard
-         [AuthorizedUsersOnly]
-        public ActionResult Index()
-        {
-            List<string> mainNavigation = new List<string>
-            {
-                Url.Action("Index", "Dashboard"),
-                Url.Action("Index", "User"),
-                Url.Action("Index", "Role"),
-            };
-
-            return View(mainNavigation);
-        }
-
-        public ActionResult Login()
+        // GET: Authorization
+        public ActionResult LogIn()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(string login, string password)
+        public ActionResult LogIn(string login, string password)
         {
             if (ModelState.IsValid)
             {
@@ -60,14 +45,20 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
                 if (BCryptHelper.CheckPassword(password, user.Password))
                 {
                     UserData.SetUserInfo(user);
-                    return View("Index");
+                    return RedirectToAction("Index","Home");
                 }
-                
+
                 ModelState.AddModelError(String.Empty, "There is wrong login or password. Try again.");
                 return View();
             }
 
             ModelState.AddModelError(String.Empty, "There is wrong login or password. Try again.");
+
+            return View();
+        }
+
+        public ActionResult LogOut()
+        {
             return View();
         }
     }

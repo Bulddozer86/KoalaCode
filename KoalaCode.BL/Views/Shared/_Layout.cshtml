@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using KoalaCode.BL.Infrastructure.Authorize
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -20,7 +21,16 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav pull-right">
+                    @if (UserData.GetUserInfo() != null)
+                    {
+                        <li>@Html.ActionLink("Logout", "LogOut", "Authorization", new {area = ""}, new {@class = "navbar-brand"})</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "LogIn", "Authorization", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+                </ul>
             </div>
         </div>
     </div>
