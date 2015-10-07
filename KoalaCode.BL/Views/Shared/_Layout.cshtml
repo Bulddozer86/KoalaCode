@@ -1,4 +1,7 @@
 ﻿@using KoalaCode.BL.Infrastructure.Authorize
+@{
+    var user = UserData.GetUserInfo();
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,16 +25,41 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right">
-                    @if (UserData.GetUserInfo() != null)
+                    @if (user != null)
                     {
-                        <li>@Html.ActionLink("Logout", "LogOut", "Authorization", new {area = ""}, new {@class = "navbar-brand"})</li>
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-5">
+                                        <div class="wrapper-user-icon">
+                                            <img src="~/Content/image/no-photo.jpg" alt="logo" class="img-circle">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="btn-group user-button">
+                                            <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="user-login">@user.Login</span> <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    @Html.ActionLink("Logout", "LogOut", "Authorization", new { area = "" }, new { @class = "" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                        </li>
                     }
-                    else 
+                    else
                     {
-                        <li>@Html.ActionLink("Login", "LogIn", "Authorization", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>
+                            @Html.ActionLink("Login", "LogIn", "Authorization", new {area = ""}, new {@class = "navbar-brand"})
+                        </li>
                     }
                 </ul>
             </div>
+            
         </div>
     </div>
     <div class="container body-content">
