@@ -27,3 +27,20 @@ tr.deleted {
     border: 1px solid lightgray;
     padding: 15px;
 }
+
+.wrapper-user-icon {
+    
+}
+
+.wrapper-user-icon img {
+    width: 48px;
+    height: 48px;
+}
+
+.user-login {
+    
+}
+
+.user-button {
+    margin-top: 10px;
+}
