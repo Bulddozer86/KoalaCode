@@ -204,8 +204,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Authorization\LogIn.cshtml" />
     <Content Include="Views\Authorization\Register.cshtml" />
-    <Content Include="Views\Authorization\_LogIn.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Authorization\_LogIn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
