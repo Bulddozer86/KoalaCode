@@ -136,8 +136,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\_bootstrap.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\koala_code.jpg" />
     <Content Include="Content\image\no-photo.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\styles.css" />
