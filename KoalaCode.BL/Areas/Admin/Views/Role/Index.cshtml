@@ -5,3 +5,9 @@
 
 <h2>@ViewBag.Title</h2>
 
+@Html.ActionLink("Add", "Edit", "Role", new { @class = "btn btn-primary" })
+
+<div id="role-list-container">
+    @{ Html.RenderAction("RoleList"); }
+</div>
+

@@ -1,0 +1,39 @@
+﻿@model List<KoalaCode.BL.Areas.Admin.Models.Role.RoleListModel>
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                @{
+                    var item = Model.First();
+                }
+
+                <th>@Html.DisplayNameFor(x => item.Id)</th>
+                <th>@Html.DisplayNameFor(x => item.Name)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.Id</td>
+                    <td>@u.Name</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Role", new { id = u.Id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Role", new { id = u.Id }, null) |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>Not found!!!</h1>
+}
