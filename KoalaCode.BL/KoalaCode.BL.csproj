@@ -158,6 +158,7 @@
     <Content Include="Areas\Admin\Views\Shared\_LoginForm.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_RoleList.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_ChangePassword.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -184,6 +185,7 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Models\Role\RoleListModel.cs" />
+    <Compile Include="Areas\Admin\Models\User\ChangePasswordModel.cs" />
     <Compile Include="Areas\Admin\Models\User\EditUserModel.cs" />
     <Compile Include="Areas\Admin\Models\User\LoginUserInfo.cs" />
     <Compile Include="Areas\Admin\Models\User\UserListItemModel.cs" />

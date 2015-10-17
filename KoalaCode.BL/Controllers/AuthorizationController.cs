@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DevOne.Security.Cryptography.BCrypt;
 using KoalaCode.BL.Areas.Admin.Models.User;
@@ -51,7 +48,7 @@ namespace KoalaCode.BL.Controllers
                     UserData.SetUserInfo(user);
                     return RedirectToAction("Index", "Home");
                 }
-
+                
                 ModelState.AddModelError(String.Empty, msg);
                 return View();
             }

@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace KoalaCode.BL.Infrastructure.Authorize
 {
-    public class UserData
+    public static class UserData
     {
         public static LoginUserInfo GetUserInfo()
         {

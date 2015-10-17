@@ -44,5 +44,11 @@ namespace KoalaCode.DAL.KoalaCodeDB.Repositories
         {
             Context.User.Add(user);
         }
+
+        public List<Role> GetAllRoles()
+        {
+            return Context.Role.ToList();
+        }
+
     }
 }

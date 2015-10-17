@@ -7,39 +7,59 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Edit","User", FormMethod.Post)) 
+@using (Html.BeginForm("Edit", "User", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     @Html.HiddenFor(model => model.Id)
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Login, new {@class = "form-control" })
+                @Html.TextBoxFor(model => model.Login, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        @if (Model.Id == 0)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <a href="#" id="change-password-link" data-toggle="modal" data-target="#change-password-modal">Change password</a>
+                </div>
+            </div>
 
+            <!-- Modal -->
+            <div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="change-password-label">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @{ Html.RenderAction("ChangePassword", new { id = Model.Id }); }
+                    </div>
+                </div>
+            </div>
+        }
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -51,7 +71,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control"})
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -75,9 +95,26 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Karma, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Karma, new {@class = "form-control" })
+                @Html.TextBoxFor(model => model.Karma, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Karma, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class="form-group">
+            @for (int i = 0; i < Model.Roles.Count; i++)
+            {
+                <div class="col-sm-offset-2 col-sm-9">
+                    @Html.HiddenFor(x => Model.Roles[i].Id)
+                    @Html.HiddenFor(x => Model.Roles[i].Name)
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(x => Model.Roles[i].Selected)
+                            @Model.Roles[i].Name
+                        </label>
+                    </div>
+                </div>
+            }
+            @Html.ValidationMessageFor(model => model.Roles)
         </div>
 
         <div class="form-group">

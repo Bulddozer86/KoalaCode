@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevOne.Security.Cryptography.BCrypt;
+using KoalaCode.BL.Areas.Admin.Models.Role;
 using KoalaCode.BL.Areas.Admin.Models.User;
 using KoalaCode.BL.Models.User;
 using KoalaCode.DAL.KoalaCodeDB.Entities;
@@ -37,9 +38,32 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
             return PartialView("_UserList", model);
         }
 
+        public ActionResult ChangePassword(int id)
+        {
+            var user = UnitOfWork.Users.GetById(id);
+
+            if (user == null) 
+                throw new Exception("User not found. ID: " + id);
+
+            return PartialView("_ChangePassword", new ChangePasswordModel { Id = id });
+        }
+
+        [HttpPost]
+        public void ChangePassword(ChangePasswordModel model)
+        {
+            var user = UnitOfWork.Users.GetById(model.Id);
+
+            if (user == null)
+                throw new Exception("User not found. ID: " + model.Id);
+
+            user.Password = BCryptHelper.HashPassword(model.Password, BCryptHelper.GenerateSalt(12));
+            UnitOfWork.SaveChanges();
+        }
+
         public ActionResult Edit(int? id = null)
         {
             var user = id.HasValue ? UnitOfWork.Users.GetById(id.Value) : new User();
+            var roles = GetRoleListModel(user.Id);
 
             var model = new EditUserModel
             {
@@ -50,7 +74,8 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Description = user.Description,
-                Karma = user.Karma
+                Karma = user.Karma,
+                Roles = roles
             };
 
             return View(model);
@@ -59,11 +84,13 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(EditUserModel model)
         {
+            if (string.IsNullOrWhiteSpace(model.Password) && model.Id == 0) ModelState.AddModelError("Password", "Password is required.");
+
             var userByEmail = UnitOfWork.Users.GetByEmail(model.Email);
             var userByLogin = UnitOfWork.Users.GetByLogin(model.Login);
 
-            if (userByEmail != null) ModelState.AddModelError("Email", string.Format("Email {0} already in use.", model.Email));
-            if (userByLogin != null) ModelState.AddModelError("Login", string.Format("Email {0} already in use.", model.Login));
+            if (userByEmail != null && userByEmail.Id != model.Id) ModelState.AddModelError("Email", string.Format("Email {0} already in use.", model.Email));
+            if (userByLogin != null && userByLogin.Id != model.Id) ModelState.AddModelError("Login", string.Format("Login {0} already in use.", model.Login));
 
             if (!ModelState.IsValid) return View(model);
             
@@ -74,14 +101,23 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
             };
 
             user.Login = model.Login;
-            user.Password = BCryptHelper.HashPassword(model.Password, BCryptHelper.GenerateSalt(12));
+            
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                user.Password = BCryptHelper.HashPassword(model.Password, BCryptHelper.GenerateSalt(12));    
+            }
+            
             user.Email = model.Email;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Description = model.Description;
             user.Karma = model.Karma;
 
-            if(model.Id == 0) UnitOfWork.Users.Add(user);
+            var roles = UnitOfWork.Users.GetAllRoles();
+            user.Roles.Clear();
+            user.Roles = roles.Where(x => model.Roles.Any(r => r.Selected && r.Id == x.Id)).ToList();
+
+           if(model.Id == 0) UnitOfWork.Users.Add(user);
 
             UnitOfWork.SaveChanges();
 
@@ -131,6 +167,16 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
             .ToList();
         }
 
-        
+        private List<UserRoleListModel> GetRoleListModel(int userId)
+        {
+            var roles = UnitOfWork.Role.GetAll();
+
+            return roles == null ? new List<UserRoleListModel>() : roles.Select(r => new UserRoleListModel
+            {
+                Id = r.Id,
+                Name = r.Name,
+                Selected = r.Users.Any(x => x.Id == userId)
+            }).OrderBy(x => x.Id).ToList();
+        }
     }
 }
