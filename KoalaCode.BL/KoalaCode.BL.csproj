@@ -159,6 +159,7 @@
     <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Role\_RoleList.cshtml" />
     <Content Include="Areas\Admin\Views\User\_ChangePassword.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -189,14 +190,14 @@
     <Compile Include="Areas\Admin\Models\User\EditUserModel.cs" />
     <Compile Include="Areas\Admin\Models\User\LoginUserInfo.cs" />
     <Compile Include="Areas\Admin\Models\User\UserListItemModel.cs" />
-    <Compile Include="Attributes\AuthorizedUsersOnlyAttribute.cs" />
+    <Compile Include="Code\Attributes\AuthorizedUsersOnlyAttribute.cs" />
     <Compile Include="Code\Constans.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Infrastructure\Authorize\UserData.cs" />
+    <Compile Include="Code\Infrastructure\Authorize\UserData.cs" />
     <Compile Include="Models\Authorization\LoginModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
