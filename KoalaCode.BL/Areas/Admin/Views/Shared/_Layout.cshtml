@@ -42,11 +42,9 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-4 col-sm-4">
-                    <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-                        <li role="presentation" class="active">@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-                        <li role="presentation">@Html.ActionLink("Users", "Index", "User")</li>
-                        <li role="presentation">@Html.ActionLink("Roles", "Index", "Role")</li>
-                    </ul>
+                    @{
+                        Html.RenderAction("MainNavigation", "Dashboard");
+                    }
                 </div>
                 <div class="col-md-8 col-sm-4">
                     @RenderBody()

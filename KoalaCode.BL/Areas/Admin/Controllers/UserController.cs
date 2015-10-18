@@ -6,27 +6,15 @@ using System.Web.Mvc;
 using DevOne.Security.Cryptography.BCrypt;
 using KoalaCode.BL.Areas.Admin.Models.Role;
 using KoalaCode.BL.Areas.Admin.Models.User;
+using KoalaCode.BL.Code.BaseControllers;
 using KoalaCode.BL.Models.User;
 using KoalaCode.DAL.KoalaCodeDB.Entities;
 using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
 
 namespace KoalaCode.BL.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseAuthRequired
     {
-        private UnitOfWork _unitOfWork;
-        protected UnitOfWork UnitOfWork
-        {
-            get
-            {
-                if (_unitOfWork == null)
-                {
-                    _unitOfWork = DependencyResolver.Current.GetService<IUnitOfWorkFactory>().UnitOfWork;
-                }
-                return _unitOfWork;
-            }
-        }
-
         public ActionResult Index()
         {
             return View();
