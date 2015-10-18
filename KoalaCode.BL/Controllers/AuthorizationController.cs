@@ -70,31 +70,31 @@ namespace KoalaCode.BL.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Register(LoginUserInfo model)
-        //{
-        //    //TODO :: I so lazy X_x
-        //    var userByEmail = UnitOfWork.Users.GetByEmail(model.Email);
-        //    var userByLogin = UnitOfWork.Users.GetByLogin(model.Login);
+        [HttpPost]
+        public ActionResult Register(RegisterUserModel model)
+        {
+            //TODO :: I so lazy X_x
+            var userByEmail = UnitOfWork.Users.GetByEmail(model.Email);
+            var userByLogin = UnitOfWork.Users.GetByLogin(model.Login);
 
-        //    if (userByEmail != null) ModelState.AddModelError("Email", string.Format("Email {0} already in use.", model.Email));
-        //    if (userByLogin != null) ModelState.AddModelError("Login", string.Format("Email {0} already in use.", model.Login));
+            if (userByEmail != null) ModelState.AddModelError("Email", string.Format("Email {0} already in use.", model.Email));
+            if (userByLogin != null) ModelState.AddModelError("Login", string.Format("Email {0} already in use.", model.Login));
 
-        //    if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return View(model);
 
-        //    var user = new User
-        //    {
-        //        CreatedDate = DateTime.Now,
-        //        UpdatedDate = DateTime.Now,
-        //        Login       = model.Login,
-        //        Password    = BCryptHelper.HashPassword(model.Password, BCryptHelper.GenerateSalt(12)),
-        //        Email       = model.Email
-        //    };
+            var user = new User
+            {
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                Login       = model.Login,
+                Password    = BCryptHelper.HashPassword(model.Password, BCryptHelper.GenerateSalt(12)),
+                Email       = model.Email
+            };
 
-        //    UnitOfWork.Users.Add(user);
-        //    UnitOfWork.SaveChanges();
+            UnitOfWork.Users.Add(user);
+            UnitOfWork.SaveChanges();
             
-        //    return View("LogIn");
-        //}
+            return View("LogIn");
+        }
     }
 }

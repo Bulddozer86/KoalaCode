@@ -1,29 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using KoalaCode.BL.Areas.Admin.Models.Role;
-using KoalaCode.BL.Areas.Admin.Models.User;
+using KoalaCode.BL.Code.BaseControllers;
 using KoalaCode.DAL.KoalaCodeDB.Entities;
 using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
 
 namespace KoalaCode.BL.Areas.Admin.Controllers
 {
-    public class RoleController : Controller
+    public class RoleController : BaseAdminRequired
     {
-        private UnitOfWork _unitOfWork;
-        protected UnitOfWork UnitOfWork
-        {
-            get
-            {
-                if (_unitOfWork == null)
-                {
-                    _unitOfWork = DependencyResolver.Current.GetService<IUnitOfWorkFactory>().UnitOfWork;
-                }
-                return _unitOfWork;
-            }
-        }
         // GET: Admin/Roles
         public ActionResult Index()
         {
@@ -39,7 +25,6 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
         public ActionResult Edit(int? id = null)
         {
             var role = id.HasValue ? UnitOfWork.Role.GetById(id.Value) : new Role();
-
             var model = new RoleListModel{Id = role.Id, Name = role.Name};
 
             return View(model);

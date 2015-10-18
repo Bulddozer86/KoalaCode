@@ -1,0 +1,14 @@
+﻿@using System.Collections
+
+@{
+    Layout = null;
+}
+
+<h2>_MainNavigation</h2>
+
+<ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+    @foreach (var menuItem in ViewBag.nav)
+    {
+        <li role="presentation"><a href="@Url.Action(menuItem.Value.ToString(), menuItem.Key.ToString())">@menuItem.Key</a></li>
+    }
+</ul>
