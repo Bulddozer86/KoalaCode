@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using DevOne.Security.Cryptography.BCrypt;
 using KoalaCode.BL.Areas.Admin.Models.User;
 using KoalaCode.BL.Attributes;
+using KoalaCode.BL.Code;
 using KoalaCode.BL.Infrastructure.Authorize;
 using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
 
@@ -26,7 +27,7 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
             }
         }
         // GET: Admin/Dashboard
-         [AuthorizedUsersOnly]
+         [AuthorizedUsersOnly(Constans.Roles.Admin, Constans.Roles.Moderator)]
         public ActionResult Index()
         {
             List<string> mainNavigation = new List<string>

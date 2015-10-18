@@ -10,10 +10,25 @@ namespace KoalaCode.BL.Attributes
 {
     public class AuthorizedUsersOnlyAttribute : AuthorizeAttribute
     {
+        public AuthorizedUsersOnlyAttribute()
+        {
+            
+        }
+
+        public List<string> RolesAccess { get; set; }
+
+        public AuthorizedUsersOnlyAttribute(params string[] roles)
+        {
+            this.RolesAccess = roles.ToList();
+        }
+
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            if (UserData.GetUserInfo() != null) return;
-            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Dashboard", action = "Login" }));
+            var userInfo = UserData.GetUserInfo();
+            if (userInfo == null || (RolesAccess != null && RolesAccess.Any() && !RolesAccess.Any(x => userInfo.Roles.Contains(x))))
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Dashboard", action = "Login" }));   
+            }
         }
     }
 }

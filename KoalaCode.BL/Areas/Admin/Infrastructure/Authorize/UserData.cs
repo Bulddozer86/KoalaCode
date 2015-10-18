@@ -19,7 +19,15 @@ namespace KoalaCode.BL.Infrastructure.Authorize
 
         public static void SetUserInfo(User model)
         {
-            var user = new LoginUserInfo{Login = model.Login};
+            var user = new LoginUserInfo
+            {
+                Login = model.Login,
+                Roles = model.Roles.Select(r => r.Name).ToList(),
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+
             var json = JsonConvert.SerializeObject(user);
             var userAuthCookie = new HttpCookie("UserData", json){Expires = DateTime.Now.AddDays(1)};
 
