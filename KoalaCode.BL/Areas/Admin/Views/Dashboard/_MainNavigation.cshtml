@@ -1,14 +1,20 @@
-﻿@using System.Collections
-
+﻿@using KoalaCode.BL.Code.Helpers
+@model List<KoalaCode.BL.Models.Navigation.Backend.BackendStaticNavigationModel>
 @{
     Layout = null;
 }
 
-<h2>_MainNavigation</h2>
+<h2>Navigation</h2>
 
 <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-    @foreach (var menuItem in ViewBag.nav)
+    @foreach (var n in Model)
     {
-        <li role="presentation"><a href="@Url.Action(menuItem.Value.ToString(), menuItem.Key.ToString())">@menuItem.Key</a></li>
+        <li role="presentation" @if (LocationHelper.IsCurrentControllerAndAction(n.Controller, n.Action, ViewContext))
+                                {
+                                    @: class="active" 
+                                }
+        >
+    <a href="@Url.Action(n.Action, n.Controller)">@n.Label</a></li>
     }
+    
 </ul>

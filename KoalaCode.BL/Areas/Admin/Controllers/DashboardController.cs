@@ -9,6 +9,7 @@ using KoalaCode.BL.Attributes;
 using KoalaCode.BL.Code;
 using KoalaCode.BL.Code.BaseControllers;
 using KoalaCode.BL.Infrastructure.Authorize;
+using KoalaCode.BL.Models.Navigation.Backend;
 using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
 
 namespace KoalaCode.BL.Areas.Admin.Controllers
@@ -22,18 +23,18 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult MainNavigation()
+        public ActionResult MainNavigation(UrlHelper urlHelper)
         {
-            ViewBag.nav = new Dictionary<string, string>
-            {    //TODO :: Controller - Action
-                {"UserProfile", "Index"},
-                {"Articles", "Index"},
-                {"Dashboard", "Index"},
-                {"User", "Index"},
-                {"Role", "Index"}
+            var model = new List<BackendStaticNavigationModel>
+            {
+                {new BackendStaticNavigationModel { Action = "Index", Controller = "Dashboard", Label = "Dashboard"}},
+                {new BackendStaticNavigationModel { Action = "Index", Controller = "UserProfile", Label = "Profile"}},
+                {new BackendStaticNavigationModel { Action = "Index", Controller = "Articles", Label = "Articles"}},
+                {new BackendStaticNavigationModel { Action = "Index", Controller = "User", Label = "Users"}},
+                {new BackendStaticNavigationModel { Action = "Index", Controller = "Role", Label = "Roles"}},
             };
 
-            return PartialView("_MainNavigation");
+            return PartialView("_MainNavigation", model);
         }
 
         public ActionResult Login()
@@ -59,7 +60,7 @@ namespace KoalaCode.BL.Areas.Admin.Controllers
                     UserData.SetUserInfo(user);
                     return View("Index");
                 }
-                
+
                 ModelState.AddModelError(String.Empty, "There is wrong login or password. Try again.");
                 return View();
             }
