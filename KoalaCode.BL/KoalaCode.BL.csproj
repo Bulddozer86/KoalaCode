@@ -201,6 +201,8 @@
     <Compile Include="Code\BaseControllers\BaseAuthRequired.cs" />
     <Compile Include="Code\BaseControllers\BaseNoAuth.cs" />
     <Compile Include="Code\Constans.cs" />
+    <Compile Include="Code\Helpers\LocationHelper.cs" />
+    <Compile Include="Code\Infrastructure\Navigation\BackendNavigation.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +210,7 @@
     </Compile>
     <Compile Include="Code\Infrastructure\Authorize\UserData.cs" />
     <Compile Include="Models\Authorization\LoginModel.cs" />
+    <Compile Include="Models\Navigation\Backend\BackendStaticNavigationModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -224,6 +227,7 @@
     <Content Include="Views\Authorization\Register.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Authorization\_LogIn.cshtml" />
+    <Content Include="Views\Shared\_MainNavigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

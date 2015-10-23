@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using System.Collections
+@using KoalaCode.BL.Code.Infrastructure.Navigation
+@{
+    var menu = new BackendNavigation().GetBackendNavigation();
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -42,9 +47,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-4 col-sm-4">
-                    @{
-                        Html.RenderAction("MainNavigation", "Dashboard");
-                    }
+                    @Html.Partial("_MainNavigation", menu)
                 </div>
                 <div class="col-md-8 col-sm-4">
                     @RenderBody()

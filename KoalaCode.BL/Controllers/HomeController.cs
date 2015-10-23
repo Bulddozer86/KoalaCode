@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using DevOne.Security.Cryptography.BCrypt;
 using KoalaCode.BL.Models.User;
 using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
-using Microsoft.Owin;
-using Owin;
 
-//using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
 
 namespace KoalaCode.BL.Controllers
 {
