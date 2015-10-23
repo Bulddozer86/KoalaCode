@@ -227,7 +227,7 @@
     <Content Include="Views\Authorization\Register.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Authorization\_LogIn.cshtml" />
-    <Content Include="Views\_MainNavigation.cshtml" />
+    <Content Include="Views\Shared\_MainNavigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
