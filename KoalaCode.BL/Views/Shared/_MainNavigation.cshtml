@@ -4,17 +4,14 @@
     Layout = null;
 }
 
-<h2>Navigation</h2>
-
-<ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+<h3>General</h3>
+<ul class="nav side-menu">
     @foreach (var n in Model)
     {
-        <li role="presentation" @if (LocationHelper.IsCurrentControllerAndAction(n.Controller, n.Action, ViewContext))
-                                {
-                                    @: class="active" 
-                                }
-        >
-    <a href="@Url.Action(n.Action, n.Controller)">@n.Label</a></li>
+        <li @if (LocationHelper.IsCurrentControllerAndAction(n.Controller, n.Action, ViewContext)) { @: class="active-item"
+                                            }>
+            <a href="@Url.Action(n.Action, n.Controller)">@n.Label</a>
+        </li>
     }
-    
+
 </ul>
