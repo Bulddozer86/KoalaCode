@@ -46,7 +46,7 @@ namespace KoalaCode.DAL.KoalaCodeDB.Entities
         public int? UpdatedById { get; set; }
         public virtual User UpdatedBy { get; set; }
         public DateTime UpdatedDate { get; set; }
-
+        
         public int? BannedById { get; set; }
         public virtual User BannedBy { get; set; }
         public DateTime? BannedDate { get; set; }

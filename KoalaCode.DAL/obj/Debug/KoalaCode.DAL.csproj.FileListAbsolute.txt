@@ -11,3 +11,5 @@ C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DA
 C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.Migrations.start.resources
 C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.csproj.GenerateResource.Cache
 C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.Migrations.remove_fullName.resources
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.Migrations.add_article_table.resources
+C:\Users\buldd\Documents\Projects\KoalaCode\KoalaCode.DAL\obj\Debug\KoalaCode.DAL.Migrations.add_new_article_table.resources

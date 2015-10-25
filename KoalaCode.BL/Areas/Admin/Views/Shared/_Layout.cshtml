@@ -1,7 +1,9 @@
 ﻿@using System.Collections
 @using KoalaCode.BL.Code.Infrastructure.Navigation
+@using KoalaCode.BL.Infrastructure.Authorize
 @{
     var menu = new BackendNavigation().GetBackendNavigation();
+    var user = UserData.GetUserInfo();
 }
 <!DOCTYPE html>
 <html>
@@ -9,11 +11,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    
+
+
+    <link href="~/Content/Backend/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Backend/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Backend/css/animate.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom styling plus plugins -->
+
+    <link href="~/Content/Backend/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Backend/css/maps/jquery-jvectormap-2.0.1.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Backend/css/icheck/flat/green.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Backend/css/floatexamples.css" rel="stylesheet" type="text/css" />
+
+
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/js/nprogress.js"></script>
+  
+
+
+    <!-- flot js -->
+    <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.time.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/date.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.spline.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/curvedLines.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.resize.js"></script>
 
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
@@ -21,44 +49,121 @@
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <!-- Left nav -->
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view" tabindex="5000" style="overflow: hidden; outline: none; cursor: -webkit-grab;">
+                    <!-- Logo -->
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>KoalaCode!</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- Navigation -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            @Html.Partial("_MainNavigation", menu)
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+
+            <!-- Top nav -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+@*                        <div class="nav toggle">*@
+@*                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>*@
+@*                        </div>*@
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    @if (user != null)
+                                    {
+                                        <img src="~/Content/image/no-photo.jpg" alt="">@user.Login
+                                        <span class=" fa fa-angle-down"></span>
+                                    }
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li>
+@*                                        <span class="pull-right"><i class="fa fa-sign-out pull-right"></i></span>*@
+                                        @Html.ActionLink("Log Out", "LogOut", "Authorization", new {area = ""}, new {@class = ""})
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">6</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                                <img src="images/img.jpg" alt="Profile Image">
+                                            </span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
             </div>
+
+            <!-- Main content -->
+            <div class="right_col" role="main">
+                @RenderBody()
+                <footer>
+                    <div class="">
+                        <p class="pull-right">
+                            It is 
+                            <span class="lead"> <i class="fa fa-paw"></i> KoalaCode!</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+            </div>
+
+
         </div>
     </div>
 
-<div class="container body-content">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Backend</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    @Html.Partial("_MainNavigation", menu)
-                </div>
-                <div class="col-md-8 col-sm-4">
-                    @RenderBody()
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-</div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/js/gauge/gauge.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/gauge/gauge_demo.js"></script>
+    <!-- chart js -->
+    <script src="~/Scripts/js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="~/Scripts/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="~/Scripts/js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="~/Scripts/js/icheck/icheck.min.js"></script>
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="~/Scripts/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/datepicker/daterangepicker.js"></script>
+
+    <script src="~/Scripts/js/custom.js"></script>
 </body>
 </html>

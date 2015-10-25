@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KoalaCodeDB\Entities\Article.cs" />
     <Compile Include="KoalaCodeDB\Entities\Role.cs" />
     <Compile Include="KoalaCodeDB\Entities\User.cs" />
     <Compile Include="KoalaCodeDB\Infrastructure\Data\IUnitOfWorkFactory.cs" />
@@ -67,6 +68,14 @@
     <Compile Include="Migrations\201509242131027_remove_fullName.Designer.cs">
       <DependentUpon>201509242131027_remove_fullName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510251445376_add_article_table.cs" />
+    <Compile Include="Migrations\201510251445376_add_article_table.Designer.cs">
+      <DependentUpon>201510251445376_add_article_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510251450009_add_new_article_table.cs" />
+    <Compile Include="Migrations\201510251450009_add_new_article_table.Designer.cs">
+      <DependentUpon>201510251450009_add_new_article_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +89,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509242131027_remove_fullName.resx">
       <DependentUpon>201509242131027_remove_fullName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510251445376_add_article_table.resx">
+      <DependentUpon>201510251445376_add_article_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510251450009_add_new_article_table.resx">
+      <DependentUpon>201510251450009_add_new_article_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
