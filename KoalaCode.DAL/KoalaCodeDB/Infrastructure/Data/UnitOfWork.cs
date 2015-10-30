@@ -15,6 +15,7 @@ namespace KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data
         }
         public UserRepository Users { get { return new UserRepository(_context); } }
         public RoleRepository Role { get { return new RoleRepository(_context);} }
+        public ArticleRepository Article { get { return new ArticleRepository(_context); } }
 
         public void SaveChanges()
         {

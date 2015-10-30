@@ -14,7 +14,7 @@
 
 
     <link href="~/Content/Backend/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Backend/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Backend/fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/Content/Backend/css/animate.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Custom styling plus plugins -->
@@ -23,13 +23,19 @@
     <link href="~/Content/Backend/css/maps/jquery-jvectormap-2.0.1.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Backend/css/icheck/flat/green.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Backend/css/floatexamples.css" rel="stylesheet" type="text/css" />
-
+    
+    <link href="~/Content/Backend/css/editor/external/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="~/Content/Backend/css/editor/index.css" rel="stylesheet">
 
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/js/nprogress.js"></script>
   
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+    // Initialize your tinyMCE Editor with your preferred options
 
+    </script>
 
     <!-- flot js -->
     <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
@@ -42,6 +48,8 @@
     <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.stack.js"></script>
     <script type="text/javascript" src="~/Scripts/js/flot/curvedLines.js"></script>
     <script type="text/javascript" src="~/Scripts/js/flot/jquery.flot.resize.js"></script>
+
+
 
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
@@ -112,7 +120,7 @@
                                     <li>
                                         <a>
                                             <span class="image">
-                                                <img src="images/img.jpg" alt="Profile Image">
+@*                                                <img src="images/img.jpg" alt="Profile Image">*@
                                             </span>
                                             <span>
                                                 <span>John Smith</span>
@@ -133,11 +141,14 @@
 
             <!-- Main content -->
             <div class="right_col" role="main">
-                @RenderBody()
+                <div class="">
+                    @RenderBody()    
+                </div>
+                <div class="clearfix"></div>
                 <footer>
                     <div class="">
                         <p class="pull-right">
-                            It is 
+                            It is
                             <span class="lead"> <i class="fa fa-paw"></i> KoalaCode!</span>
                         </p>
                     </div>
@@ -151,8 +162,8 @@
 
     <script src="~/Scripts/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="~/Scripts/js/gauge/gauge.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/js/gauge/gauge_demo.js"></script>
+@*    <script type="text/javascript" src="~/Scripts/js/gauge/gauge.min.js"></script>*@
+@*    <script type="text/javascript" src="~/Scripts/js/gauge/gauge_demo.js"></script>*@
     <!-- chart js -->
     <script src="~/Scripts/js/chartjs/chart.min.js"></script>
     <!-- bootstrap progress js -->
@@ -165,5 +176,6 @@
     <script type="text/javascript" src="~/Scripts/js/datepicker/daterangepicker.js"></script>
 
     <script src="~/Scripts/js/custom.js"></script>
+    <script src="~/Scripts/scripts.js"></script>
 </body>
 </html>
