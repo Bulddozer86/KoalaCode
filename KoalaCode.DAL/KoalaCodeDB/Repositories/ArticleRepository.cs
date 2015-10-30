@@ -21,6 +21,11 @@ namespace KoalaCode.DAL.KoalaCodeDB.Repositories
             return Context.Article.SingleOrDefault(a => a.Id == id);
         }
 
+        public List<Article> GetArticlesByUser(User user)
+        {
+            return Context.Article.Where(a => a.User.Id == user.Id).ToList();
+        }
+
         public Article GetByUser(User u)
         {
             return null;

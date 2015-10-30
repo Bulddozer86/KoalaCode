@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Dynamic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KoalaCode.DAL.KoalaCodeDB.Entities
 {
@@ -56,6 +51,7 @@ namespace KoalaCode.DAL.KoalaCodeDB.Entities
         [StringLength(1024)]
         public string BanReason { get; set; }
 
+        public virtual ICollection<Article> Articles { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
         [ForeignKey("DeletedById")]
         public virtual ICollection<User> DeletedUsers { get; set; }
@@ -69,6 +65,7 @@ namespace KoalaCode.DAL.KoalaCodeDB.Entities
         public User()
         {
             Roles = new HashSet<Role>();
+            Articles = new HashSet<Article>();
             DeletedUsers = new HashSet<User>();
             BannedUsers = new HashSet<User>();
             UpdatedUsers = new HashSet<User>();

@@ -4,6 +4,7 @@ namespace KoalaCode.BL.Areas.Admin.Models.User
 {
     public class LoginUserInfo
     {
+        public int Id { get; set; }
         public string Login { get; set; }
 
         public string Email { get; set; }

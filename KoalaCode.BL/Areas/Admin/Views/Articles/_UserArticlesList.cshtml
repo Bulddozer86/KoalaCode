@@ -1,0 +1,86 @@
+﻿@model List<KoalaCode.BL.Areas.Admin.Models.Article.ListUserArticlesModel>
+
+@{
+    Layout = null;
+    ViewBag.Title = "Articles";
+}
+
+
+
+@if (Model != null && Model.Any())
+{
+     foreach (var a in Model)
+     {
+        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+            <div class="x_panel fixed_height_390">
+                <div class="x_title">
+                    <h2>Article</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Edit</a>
+                                </li>
+                                <li>
+                                    <a href="#">Delete</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="flex">
+                        <ul class="list-inline widget_profile_box">
+                            <li>
+                                <a>
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3 class="name">@a.Headline</h3>
+
+                    <div class="flex">
+                        <ul class="list-inline count2">
+                            <li>
+                                <h3>123</h3>
+                                <span>Like</span>
+                            </li>
+                            <li>
+                                <h3>12</h3>
+                                <span>Dislike</span>
+                            </li>
+                            <li>
+                                <h3>23</h3>
+                                <span>Coments</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="short-description">
+                        @Html.Raw(a.ShortDescription)
+                    </div>
+                </div>
+            </div>
+        </div>
+     }
+}
+else
+{
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>Something wrong!</strong> You don't not have any articles
+    </div>
+}

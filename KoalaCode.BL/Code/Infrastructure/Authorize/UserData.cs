@@ -21,6 +21,7 @@ namespace KoalaCode.BL.Infrastructure.Authorize
         {
             var user = new LoginUserInfo
             {
+                Id = model.Id,
                 Login = model.Login,
                 Roles = model.Roles.Select(r => r.Name).ToList(),
                 Email = model.Email,

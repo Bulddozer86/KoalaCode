@@ -6372,3 +6372,55 @@ ul.notifications {
 .nav.side-menu> li > a {
     margin-bottom: 6px;
 }
+
+.page-title .title_right .pull-right {
+    margin: 0;
+}
+
+.hidden-textarea {
+    visibility: hidden;
+}
+
+#editor-short-description, #editor-description {
+    max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 4px;
+    box-sizing: content-box;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    overflow: scroll;
+    outline: none;
+}
+
+.short-teaser {
+    height: 100px!important;
+}
+
+.editor a.btn {
+    padding: 6px 11px;
+}
+
+.short-description {
+   overflow: hidden;
+   height: 115px;
+}
+
+#user-list-articles > .row {
+    float: left;
+    width: 100%;
+}
+
+#user-list-articles ul.widget_profile_box {
+    margin-top: 0;
+}
+
+#user-list-articles .panel_toolbox {
+    min-width: auto;
+}
