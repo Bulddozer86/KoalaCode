@@ -1041,6 +1041,7 @@
     <Compile Include="Areas\Admin\Controllers\UserProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
     <Compile Include="Areas\Admin\Models\Article\EditArticleModel.cs" />
+    <Compile Include="Areas\Admin\Models\Article\ListArticlesModel .cs" />
     <Compile Include="Areas\Admin\Models\Article\ListUserArticlesModel.cs" />
     <Compile Include="Areas\Admin\Models\Role\RoleListModel.cs" />
     <Compile Include="Areas\Admin\Models\User\ChangePasswordModel.cs" />

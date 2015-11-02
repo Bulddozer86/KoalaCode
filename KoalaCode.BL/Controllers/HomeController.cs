@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using KoalaCode.BL.Areas.Admin.Models.Article;
+using KoalaCode.BL.Infrastructure.Authorize;
 using KoalaCode.BL.Models.User;
 using KoalaCode.DAL.KoalaCodeDB.Infrastructure.Data;
 
@@ -25,24 +27,26 @@ namespace KoalaCode.BL.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var users = UnitOfWork.Users.GetAll();
-            var model = new List<UserModel>();
-            
-            if (users != null)
-            {
-                model = users.Select(u => new UserModel
-                {
-                    Id = u.Id,
-                    Email = u.Email,
-                    Login = u.Login
-                }).ToList();
-            }
-            //var test = BCryptHelper.HashPassword("test_pass", BCryptHelper.GenerateSalt(12));
-            //var test1 = BCryptHelper.CheckPassword("test_pas", test);
-            //var test2 = BCryptHelper.CheckPassword("test_pass", test);
+            return View(GetListArticlesModel());
+        }
 
-            //return Content(String.Format("hash: {0}, wrong: {1}, correct: {2}", test, test1, test2));
-            return View(model);
+        private List<ListArticlesModel> GetListArticlesModel()
+        {
+            var model = new List<ListArticlesModel>();
+            var articles = UnitOfWork.Article.GetAll();
+
+            if (articles == null) return model;
+
+            model.AddRange(articles.Select(a => new ListArticlesModel
+            {
+                Id = a.Id,
+                Headline = a.Headline,
+                ShortDescription = a.ShortDescription,
+                Description = a.Description,
+                CreatedDate = a.CreatedDate
+            }).OrderBy(a => a.CreatedDate));
+
+            return model;
         }
     }
 }
