@@ -1,35 +1,33 @@
 version: "3.1"
+
 services:
+  mysql:
+    image: mysql:8.0
+    working_dir: /app
+    volumes:
+      - ./phpdocker/mysql/data:/app
+    environment:
+      - MYSQL_ROOT_PASSWORD=dbrootpw
+      - MYSQL_DATABASE=docker_symfony4
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbpw
+    ports:
+      - "8002:3306"
 
-    mysql:
-      image: mysql:8.0
-      container_name: koala-code-mysql
-      working_dir: /app
-      volumes:
-        - .phpdocker/mysql/data:/app
-      environment:
-        - MYSQL_ROOT_PASSWORD=dbrootpw
-        - MYSQL_DATABASE=docker_symfony4
-        - MYSQL_USER=dbuser
-        - MYSQL_PASSWORD=dbpw
-      ports:
-        - "8002:3306"
-
-    webserver:
-      image: nginx:alpine
-      container_name: koala-code-webserver
-      working_dir: /app
-      volumes:
-          - ./source:/app
-          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      ports:
-       - "8000:80"
-
-    php-fpm:
-      build: phpdocker/php-fpm
-      container_name: koala-code-php-fpm
-      working_dir: /app
-      volumes:
+  webserver:
+    image: nginx:alpine
+    working_dir: /app
+    volumes:
         - ./source:/app
-        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+        - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+     - "8000:80"
+
+  php-fpm:
+    build: phpdocker/php-fpm
+    working_dir: /app
+    volumes:
+      - ./source:/app
+      - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+    #entrypoint: "/docker-entrypoint.sh"
 
